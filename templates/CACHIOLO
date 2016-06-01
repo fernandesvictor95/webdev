@@ -1,0 +1,89 @@
+
+fernandesvictor95:~/workspace/web $ git init
+Initialized empty Git repository in /home/ubuntu/workspace/web/.git/
+fernandesvictor95:~/workspace/web (master) $ git remote add origin https://github.com/fernandesvictor95/webdev.git
+fernandesvictor95:~/workspace/web (master) $ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .dir-locals.el
+        .ghci
+        .gitignore
+        Untitled
+        client_session_key.aes
+        main.hs
+        stack.yaml
+        static/
+        templates/
+        web.cabal
+
+nothing added to commit but untracked files present (use "git add" to track)
+fernandesvictor95:~/workspace/web (master) $ git add .
+fernandesvictor95:~/workspace/web (master) $ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   .dir-locals.el
+        new file:   .ghci
+        new file:   .gitignore
+        new file:   Untitled
+        new file:   client_session_key.aes
+        new file:   main.hs
+        new file:   stack.yaml
+        new file:   static/cachorro.jpg
+        new file:   static/teste.css
+        new file:   templates/animal.hamlet
+        new file:   templates/animal.lucius
+        new file:   templates/login.lucius
+        new file:   templates/perfil.hamlet
+        new file:   templates/perfil.lucius
+        new file:   web.cabal
+
+fernandesvictor95:~/workspace/web (master) $ git commit -m "teste"
+[master (root-commit) 117165e] teste
+ 15 files changed, 597 insertions(+)
+ create mode 100644 .dir-locals.el
+ create mode 100644 .ghci
+ create mode 100644 .gitignore
+ create mode 100644 Untitled
+ create mode 100644 client_session_key.aes
+ create mode 100644 main.hs
+ create mode 100644 stack.yaml
+ create mode 100644 static/cachorro.jpg
+ create mode 100644 static/teste.css
+ create mode 100644 templates/animal.hamlet
+ create mode 100644 templates/animal.lucius
+ create mode 100644 templates/login.lucius
+ create mode 100644 templates/perfil.hamlet
+ create mode 100644 templates/perfil.lucius
+ create mode 100644 web.cabal
+fernandesvictor95:~/workspace/web (master) $ git push origin master
+Username for 'https://github.com': fernandes.victor95@gmail.com
+Password for 'https://fernandes.victor95@gmail.com@github.com': 
+To https://github.com/fernandesvictor95/webdev.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/fernandesvictor95/webdev.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+fernandesvictor95:~/workspace/web (master) $ git push origin master --force
+Username for 'https://github.com': fernandes.victor95@gmail.com
+Password for 'https://fernandes.victor95@gmail.com@github.com': 
+Counting objects: 17, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (14/14), done.
+Writing objects: 100% (17/17), 73.46 KiB | 0 bytes/s, done.
+Total 17 (delta 0), reused 0 (delta 0)
+To https://github.com/fernandesvictor95/webdev.git
+ + 4d3d6d7...117165e master -> master (forced update)
+fernandesvictor95:~/workspace/web (master) $ 

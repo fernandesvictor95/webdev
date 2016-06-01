@@ -23,3 +23,14 @@ curl https://hask2-romefeller.c9users.io/cadastro/action/26 \
 connStr = "dbname=de3isbdvftdc7i host=ec2-107-20-174-127.compute-1.amazonaws.com user=yiemztstzaoevg password=0QtySsqXrYze_VNMixKLTTI8Lk port=5432"
 
 data: JSON.stringify({"nome":$("#usuario").val(), "valor":parseFloat($("#valor").val())})
+
+
+@ = rota -> exemplo href=@{ListarR}> Lista de arquivos
+
+git add . -> sempre que modificar os arquivos
+
+git commit -m "comentario" -> atualiza localmente
+
+git push origin master -> manda para o git
+
+git status
