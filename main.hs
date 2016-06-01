@@ -196,7 +196,7 @@ getPerfilR uid = do
 getPetsR :: Handler Html
 getPetsR = 
            defaultLayout $ do
-           toWidget $ $(luciusFile "templates/animal.lucius")
+           toWidget $ $(luciusFile "templates/home.lucius")
            $(whamletFile "templates/animal.hamlet")
            
 -- CADASTRO DO ANIMAL

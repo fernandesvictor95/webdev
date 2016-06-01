@@ -137,3 +137,12 @@ a{
 .sub_footer{
     font-size: 14px;
 }
+
+.content_area{
+    position: relative;
+    width: 70%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 20px;
+    height: auto;
+}
