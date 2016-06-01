@@ -54,13 +54,9 @@ mkYesod "Adote" [parseRoutes|
 /erro ErroR GET                         -- página de erro
 /usuario UsuarioR GET POST              -- cadastro de usuário
 /perfil/#UsuarioId PerfilR GET          -- perfil de usuário
-/admin AdminR GET
+/cadastro CadastroR GET POST            -- cadastro de animal
 /animal/#AnimalId AnimalR GET           -- perfil do animal
 /pets PetsR GET                         -- menu com todos os pets
-/catioros CatiorosR GET                 -- página dos catioros
-/bixanos BixanosR GET                   -- página dos bixanos
-/alados AladosR GET                     -- página dos alados
-/outros OutrosR GET                     -- página dos animais ~não comuns~
 /logout LogoutR GET
 /static StaticR Static getStatic
 
@@ -73,8 +69,9 @@ instance Yesod Adote where
     isAuthorized ErroR _ = return Authorized
     isAuthorized HomeR _ = return Authorized
     isAuthorized UsuarioR _ = return Authorized
+    isAuthorized CadastroR _ = return Authorized
     isAuthorized PetsR _ = return Authorized
-    isAuthorized AdminR _ = isAdmin
+    -- isAuthorized AdminR _ = isAdmin
     isAuthorized _ _ = isUser
 
 isUser = do
@@ -83,12 +80,12 @@ isUser = do
         Nothing -> AuthenticationRequired
         Just _ -> Authorized
     
-isAdmin = do
+{- isAdmin = do
     mu <- lookupSession "_ID"
     return $ case mu of
         Nothing -> AuthenticationRequired
         Just "admin" -> Authorized 
-        Just _ -> Unauthorized "Voce precisa ser admin para entrar aqui"
+        Just _ -> Unauthorized "Voce precisa ser admin para entrar aqui" -}
 
 instance YesodPersist Adote where
    type YesodPersistBackend Adote = SqlBackend
@@ -144,7 +141,7 @@ postLoginR :: Handler Html
 postLoginR = do
            ((result, _), _) <- runFormPost formLogin
            case result of 
-               FormSuccess ("admin","admin") -> setSession "_ID" "admin" >> redirect AdminR
+              -- FormSuccess ("admin","admin") -> setSession "_ID" "admin" >> redirect AdminR
                FormSuccess (login,senha) -> do 
                    user <- runDB $ selectFirst [UsuarioLogin ==. login, UsuarioSenha ==. senha] []
                    case user of
@@ -161,8 +158,8 @@ postUsuarioR = do
 
 
 -- página de cadastro de pet
-postAnimalR :: Handler Html
-postAnimalR = do
+postCadastroR :: Handler Html
+postCadastroR = do
            ((result, _), _) <- runFormPost formAnimal
            case result of 
                FormSuccess animal -> (runDB $ insert animal) >>= \aiid -> redirect (AnimalR aiid)
@@ -184,15 +181,6 @@ getUsuarioR = do
                      <input type="submit" value="Enviar">
            |]
            
--- PÁGINA DOS ALADOS
-getAladosR :: Handler Html
-getAladosR = do
-           (widget, enctype) <- generateFormPost formAnimal
-           defaultLayout [whamlet|
-                 <form method=post enctype=#{enctype} action=@{AladosR}>
-                     ^{widget}
-                     <input type="submit" value="Enviar">
-           |]
 
 
 -- PERFIL DO USUÁRIO
@@ -211,7 +199,16 @@ getPetsR =
            toWidget $ $(luciusFile "templates/animal.lucius")
            $(whamletFile "templates/animal.hamlet")
            
--- PERFIL DO ANIMAL
+-- CADASTRO DO ANIMAL
+getCadastroR ::  Handler Html
+getCadastroR = do
+           (widget, enctype) <- generateFormPost formUser
+           defaultLayout [whamlet|
+                 <form method=post enctype=#{enctype} action=@{UsuarioR}>
+                     ^{widget}
+                     <input type="submit" value="Enviar">
+           |]
+
 getAnimalR :: AnimalId -> Handler Html
 getAnimalR aid = do
       user <- runDB $ get404 aid
@@ -220,47 +217,13 @@ getAnimalR aid = do
           $(whamletFile "templates/perfil.hamlet")
 
 
--- PÁGINA DOS CATIOROS
-getCatiorosR :: Handler Html
-getCatiorosR = do
-           (widget, enctype) <- generateFormPost formAnimal
-           defaultLayout [whamlet|
-                 <form method=post enctype=#{enctype} action=@{CatiorosR}>
-                     ^{widget}
-                     <input type="submit" value="Enviar">
-           |]
-
--- PÁGINA DOS BIXANOS
-getBixanosR :: Handler Html
-getBixanosR = do
-           (widget, enctype) <- generateFormPost formAnimal
-           defaultLayout [whamlet|
-                 <form method=post enctype=#{enctype} action=@{BixanosR}>
-                     ^{widget}
-                     <input type="submit" value="Enviar">
-           |]
-
-
-
-
--- PÁGINA DOS ANIMAIS EXÓTICOS
-getOutrosR :: Handler Html
-getOutrosR = do
-           (widget, enctype) <- generateFormPost formAnimal
-           defaultLayout [whamlet|
-                 <form method=post enctype=#{enctype} action=@{OutrosR}>
-                     ^{widget}
-                     <input type="submit" value="Enviar">
-           |]
-
-
 -- PÁGINA INICIAL           
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
            toWidget $ $(luciusFile "templates/home.lucius")
            $(whamletFile "templates/home.hamlet")
 
--- PÁGINA INICIAL DO ADMIN
+{- PÁGINA INICIAL DO ADMIN
 getAdminR :: Handler Html
 getAdminR = defaultLayout $ do
            addStylesheet $ StaticR teste_css
@@ -270,6 +233,7 @@ getAdminR = defaultLayout $ do
                   <li> <a href=@{LoginR}> Cadastro de peca
                   <img src=@{StaticR cachorro_jpg}>
 |]
+-}
 
 -- PÁGINA DE LOGIN (FORMULÁRIO)
 getLoginR :: Handler Html
