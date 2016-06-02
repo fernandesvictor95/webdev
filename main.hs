@@ -34,6 +34,7 @@ Animal json
    peso Text
    tamanho Text
    observacoes Text
+   telefone Int
    deriving Show
    
 Especie json
@@ -51,6 +52,7 @@ staticFiles "static"
 mkYesod "Adote" [parseRoutes|
 / HomeR GET
 /login LoginR GET POST                  -- página de login
+/admin AdminR GET                       -- página do admin
 /erro ErroR GET                         -- página de erro
 /usuario UsuarioR GET POST              -- cadastro de usuário
 /perfil/#UsuarioId PerfilR GET          -- perfil de usuário
@@ -59,6 +61,7 @@ mkYesod "Adote" [parseRoutes|
 /pets PetsR GET                         -- menu com todos os pets
 /logout LogoutR GET
 /static StaticR Static getStatic
+
 
 |]
  
@@ -71,7 +74,7 @@ instance Yesod Adote where
     isAuthorized UsuarioR _ = return Authorized
     isAuthorized CadastroR _ = return Authorized
     isAuthorized PetsR _ = return Authorized
-    -- isAuthorized AdminR _ = isAdmin
+    isAuthorized AdminR _ = isAdmin
     isAuthorized _ _ = isUser
 
 isUser = do
@@ -80,12 +83,13 @@ isUser = do
         Nothing -> AuthenticationRequired
         Just _ -> Authorized
     
-{- isAdmin = do
+isAdmin = do
     mu <- lookupSession "_ID"
     return $ case mu of
         Nothing -> AuthenticationRequired
         Just "admin" -> Authorized 
-        Just _ -> Unauthorized "Voce precisa ser admin para entrar aqui" -}
+        Just _ -> Unauthorized "Voce precisa ser admin para entrar aqui"
+    
 
 instance YesodPersist Adote where
    type YesodPersistBackend Adote = SqlBackend
@@ -141,14 +145,15 @@ postLoginR :: Handler Html
 postLoginR = do
            ((result, _), _) <- runFormPost formLogin
            case result of 
-              -- FormSuccess ("admin","admin") -> setSession "_ID" "admin" >> redirect AdminR
+               FormSuccess ("admin","admin") -> setSession "_ID" "admin" >> redirect AdminR
                FormSuccess (login,senha) -> do 
                    user <- runDB $ selectFirst [UsuarioLogin ==. login, UsuarioSenha ==. senha] []
                    case user of
                        Nothing -> redirect LoginR
                        Just (Entity pid u) -> setSession "_ID" (pack $ show $ fromSqlKey pid) >> redirect (PerfilR pid)
+               _ -> redirect ErroR
 
--- página de cadastro de usuário
+-- validação cadastro de usuário
 postUsuarioR :: Handler Html
 postUsuarioR = do
            ((result, _), _) <- runFormPost formUser
@@ -157,7 +162,7 @@ postUsuarioR = do
                _ -> redirect ErroR
 
 
--- página de cadastro de pet
+-- validação cadastro de pet
 postCadastroR :: Handler Html
 postCadastroR = do
            ((result, _), _) <- runFormPost formAnimal
@@ -202,9 +207,9 @@ getPetsR =
 -- CADASTRO DO ANIMAL
 getCadastroR ::  Handler Html
 getCadastroR = do
-           (widget, enctype) <- generateFormPost formUser
+           (widget, enctype) <- generateFormPost formAnimal
            defaultLayout [whamlet|
-                 <form method=post enctype=#{enctype} action=@{UsuarioR}>
+                 <form method=post enctype=#{enctype} action=@{PetsR}>
                      ^{widget}
                      <input type="submit" value="Enviarr">
            |]
@@ -213,15 +218,15 @@ getAnimalR :: AnimalId -> Handler Html
 getAnimalR aid = do
       user <- runDB $ get404 aid
       defaultLayout $ do
-          toWidget $ $(luciusFile "templates/perfil.lucius")
-          $(whamletFile "templates/perfil.hamlet")
+          addStylesheet $ StaticR teste_css
+          toWidget $ $(whamletFile "templates/perfil.hamlet")
 
 
 -- PÁGINA INICIAL           
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
-           toWidget $ $(luciusFile "templates/home.lucius")
-           $(whamletFile "templates/home.hamlet")
+           addStylesheet $ StaticR teste_css
+           toWidget $ $(whamletFile "templates/home.hamlet")
 
 -- PÁGINA INICIAL DO ADMIN
 getAdminR :: Handler Html
@@ -230,7 +235,7 @@ getAdminR = defaultLayout $ do
            [whamlet|
                <label> Bem-vindo ao sistema!
                <ul>
-                  <li> <a href=@{LoginR}> Cadastro de peca
+                  <li> <a href=@{CadastroR}> Cadastro do pet
                   <img src=@{StaticR cachorro_jpg}>
 |]
 
@@ -284,7 +289,8 @@ main = runStdoutLoggingT $ withPostgresqlPool connStr 10 $ \pool -> liftIO $ do
 
 
 --REST
-	--    nulpotente
+--nulpotente
+
 --Get -----------------> consulta (nao cria recurso nao faz nada com servidor)[select]
 
 
@@ -300,3 +306,18 @@ main = runStdoutLoggingT $ withPostgresqlPool connStr 10 $ \pool -> liftIO $ do
 
 
 --Options ------------> Informa os metodos https permitidos para o recurso []
+
+{- 
+
+getHomeR :: Handler Html
+getHomeR = do
+    people <- runDB $ selectList [] [Asc PersonAge]
+    defaultLayout
+        [whamlet|
+            <ul>
+                $forall Entity personid person <- people
+                    <li>
+                        <a href=@{PersonR personid}>#{personFirstName person}
+        |]
+        
+-}

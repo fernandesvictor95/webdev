@@ -14,16 +14,11 @@
         <div class="divcinza">
             <div class="content_area">
                 <table>
-                    <tr>
-                        <th>Espécie</th>
-                        <th>Nome</th>
-                        <th>Idade</th>
-                        <th>Raça</th>
-                        <th>Peso</th>
-                        <th>Tamanho</th>
-                        <th>Observações</th>
+                  
                     <tr>
                         <td>
+                            
+                        
         <div class="footer">
             <p class="bege negrito titulo_footer">Adote 1 Parça</p>
             <p class="branco sub_footer">Dayane, Stephany e Victor</p>

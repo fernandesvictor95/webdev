@@ -1,0 +1,98 @@
+body{
+	margin: 0;
+    padding: 0;
+        font-family: 'Open Sans', sans-serif;
+}
+
+#content_login{
+    background-image: url('../images/background.png');
+    margin: 0;
+}
+
+
+#form_login{
+	position: relative;
+    margin: 0 auto;
+    width: 50%;
+    height: auto;
+    text-align: center;
+    margin-top: 10%;
+}
+
+#form_area{
+	background-color: #151515;
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 35px 35px 22px 35px;
+}
+
+label{
+	position: relative;
+    margin: 0 auto;
+    width: 11%;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+    display: table-cell;
+    background-color: #c49a3d;
+    color: #fff;
+    border: 1px solid #c49a3d;
+    border-radius: 5px 5px 0 0;
+}
+
+.required{
+	margin-bottom: 10px;
+}
+
+#hident2, #hident3{
+	position: relative;
+	width: 100%;
+	height: auto;
+	border-radius: 0 0 5px 5px;
+	background-color: transparent;
+    border: 1px solid #c49a3d;
+    color: #c49a3d;
+}
+
+input[type="text"]{
+	position: relative;
+	margin: 0 auto;
+	height: 30px;
+	 box-sizing: border-box;
+    padding: 6px;
+    border: 0;
+    width: 100%;
+}
+
+input[type="password"]{
+	position: relative;
+	margin: 0 auto;
+	height: 30px;
+	box-sizing: border-box;
+    padding: 6px;
+    border: 0;
+    width: 100%;
+}
+
+input[type="submit"]{
+	position: relative;
+    margin: 0 auto;
+    width: 100px;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+    display: table-cell;
+    background-color: #c49a3d;
+    color: #fff;
+    border: 1px solid #c49a3d;
+}

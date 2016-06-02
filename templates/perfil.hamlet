@@ -1,1 +1,31 @@
-<h1>olá, mundo. isso é um teste</h1>
+<body>
+    <h1>VOCÊ ESTÁ NA SUA PAGINA DE PERFIL</h1>
+        <div class="header">
+            <div class="itens_menu esq">
+            <a href=@{HomeR} class="bege negrito"><p>ADOTE 1 PARÇA</p></a>
+            
+        <div class="itens_menu dir">
+            <a href=@{UsuarioR} class="menu branco">Minha Conta</a> <span class="divtxt">|</span>
+            <a href=@{LogoutR} class="menu branco">Logout</a>
+        <div id="home_top">
+            <img src="../images/logo.png" />
+            
+        <div class="welcome_msg">
+            <p class="txtcorrido">Olá!</p>
+            <p class="txtcorrido">Aqui no <span class="adote_citado">Adote 1 Parça</span> você vai encontrar animaizinhos que precisam de um novo lar. Estamos prontos para auxiliar em todo o processo de adoção para que o animal seja etregue em segurança em seu novo cantinho. Tudo o que você precisa fazer é preencher alguns formulários bem rápidos só pra garantir que o seu parça vai ser entregue num lugar ideal para ele. Lembrando que nós não trabalhamos com a venda de animais.
+            <p class="txtcorrido nomargin">Agora, vamos começar. Estas são as opções que você tem para nos ajudar:
+            
+        <div class="divcinza">
+            <div class="opc_menu">
+                <img src="../images/doacoes.png" class="img_opc" />
+                <p class="txtcorrido branco nomargin">Encontrou um animal abandonado</p>
+                <p class="txtcorrido bege nomargin">ou</p>
+                <p class="txtcorrido branco">não pode mais cuidar do seu?</p>
+                <p class="btn_opc"><a href=@{PetsR} class="bege">Clique aqui!</a></p>
+            <div class="opc_menu">
+                <img src="../images/adocoes.png" class="img_opc" />
+                <p class="txtcorrido branco">Quer adotar 1 (ou vários) parça(s)?</p>
+                <p class="btn_opc"><a href=@{PetsR} class="bege">Clique aqui!</a></p>
+        <div class="footer">
+            <p class="bege negrito titulo_footer">Adote 1 Parça</p>
+            <p class="branco sub_footer">Dayane, Stephany e Victor</p>
