@@ -206,7 +206,7 @@ getCadastroR = do
            defaultLayout [whamlet|
                  <form method=post enctype=#{enctype} action=@{UsuarioR}>
                      ^{widget}
-                     <input type="submit" value="Enviar">
+                     <input type="submit" value="Enviarr">
            |]
 
 getAnimalR :: AnimalId -> Handler Html
@@ -223,7 +223,7 @@ getHomeR = defaultLayout $ do
            toWidget $ $(luciusFile "templates/home.lucius")
            $(whamletFile "templates/home.hamlet")
 
-{- PÁGINA INICIAL DO ADMIN
+-- PÁGINA INICIAL DO ADMIN
 getAdminR :: Handler Html
 getAdminR = defaultLayout $ do
            addStylesheet $ StaticR teste_css
@@ -233,7 +233,6 @@ getAdminR = defaultLayout $ do
                   <li> <a href=@{LoginR}> Cadastro de peca
                   <img src=@{StaticR cachorro_jpg}>
 |]
--}
 
 -- PÁGINA DE LOGIN (FORMULÁRIO)
 getLoginR :: Handler Html
@@ -274,8 +273,9 @@ connStr = "dbname=de3isbdvftdc7i host=ec2-107-20-174-127.compute-1.amazonaws.com
 
 main::IO()
 main = runStdoutLoggingT $ withPostgresqlPool connStr 10 $ \pool -> liftIO $ do 
-       runSqlPersistMPool (runMigration migrateAll) pool
-      
+       runSqlPersistMPool (runMigration migrateAll) pool 
+       t@(Static settings) <- static "static"
+       warp 8080 (Adote t pool)
 
 
 
