@@ -1,0 +1,9 @@
+$doctype 5
+    <head>
+        <title>Adote 1 Parça</title>
+    <body id="content_login">
+        <div id="form_login">
+            <div id="form_area">
+                <form method=post enctype=#{enctype} action=@{LoginR}>
+                    ^{widget}
+                     <input type="submit" value="Entrar">

@@ -34,7 +34,6 @@ Animal json
    peso Text
    tamanho Text
    observacoes Text
-   telefone Int
    deriving Show
    
 Especie json
@@ -135,7 +134,7 @@ formAnimal = renderDivs $ Animal <$>
           areq textField "Idade: " Nothing <*>
           areq textField "Peso: " Nothing <*>
           areq textField "Tamanho: " Nothing <*>
-          areq textField "Observações: " Nothing        
+          areq textField "Observações: " Nothing 
 
 
 ----------------------- POSTS
@@ -193,16 +192,16 @@ getPerfilR :: UsuarioId -> Handler Html
 getPerfilR uid = do
       user <- runDB $ get404 uid
       defaultLayout $ do
-          toWidget $ $(luciusFile "templates/perfil.lucius")
-          $(whamletFile "templates/perfil.hamlet")
+          addStylesheet $ StaticR teste_css
+          toWidget $ $(whamletFile "templates/perfil.hamlet")
 
 
 -- PÁGINA COM TODOS OS PETS
 getPetsR :: Handler Html
 getPetsR = 
            defaultLayout $ do
-           toWidget $ $(luciusFile "templates/home.lucius")
-           $(whamletFile "templates/animal.hamlet")
+               addStylesheet $ StaticR teste_css
+               toWidget $ $(whamletFile "templates/animal.hamlet")
            
 -- CADASTRO DO ANIMAL
 getCadastroR ::  Handler Html
@@ -225,8 +224,8 @@ getAnimalR aid = do
 -- PÁGINA INICIAL           
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
-           addStylesheet $ StaticR teste_css
-           toWidget $ $(whamletFile "templates/home.hamlet")
+               addStylesheet $ StaticR teste_css
+               toWidget $ $(whamletFile "templates/home.hamlet")
 
 -- PÁGINA INICIAL DO ADMIN
 getAdminR :: Handler Html
@@ -244,8 +243,9 @@ getLoginR :: Handler Html
 getLoginR = do
            (widget, enctype) <- generateFormPost formLogin
            defaultLayout $ do
-           toWidget $ $(luciusFile "templates/login.lucius")
-           [whamlet|
+           addStylesheet $ StaticR teste_css
+           toWidget $ $(whamletFile "templates/login.hamlet")
+{-           [whamlet|
            <div id="form_login">
                 
                 <div id="form_area">
@@ -256,7 +256,7 @@ getLoginR = do
            |]
            
             
-
+-}
 
 -- PÁGINA DE ERRO
 getErroR :: Handler Html
