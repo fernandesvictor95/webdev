@@ -4,6 +4,6 @@ $doctype 5
     <body id="content_login">
         <div id="form_login">
             <div id="form_area">
-                <form method=post enctype=#{enctype} action=@{LoginR}>
+                <form method=post enctype=#{enctype} action=@{InicioR}>
                     ^{widget}
                      <input type="submit" value="Entrar">

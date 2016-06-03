@@ -51,6 +51,7 @@ staticFiles "static"
 mkYesod "Adote" [parseRoutes|
 / HomeR GET
 /login LoginR GET POST                  -- página de login
+/inicio InicioR GET                     -- página inicial
 /admin AdminR GET                       -- página do admin
 /erro ErroR GET                         -- página de erro
 /usuario UsuarioR GET POST              -- cadastro de usuário
@@ -180,7 +181,7 @@ getUsuarioR :: Handler Html
 getUsuarioR = do
            (widget, enctype) <- generateFormPost formUser
            defaultLayout [whamlet|
-                 <form method=post enctype=#{enctype} action=@{UsuarioR}>
+                 <form method=post enctype=#{enctype} action=@{LoginR}>
                      ^{widget}
                      <input type="submit" value="Enviar">
            |]
@@ -192,7 +193,7 @@ getPerfilR :: UsuarioId -> Handler Html
 getPerfilR uid = do
       user <- runDB $ get404 uid
       defaultLayout $ do
-          addStylesheet $ StaticR teste_css
+          addStylesheet $ StaticR style_css
           toWidget $ $(whamletFile "templates/perfil.hamlet")
 
 
@@ -200,37 +201,42 @@ getPerfilR uid = do
 getPetsR :: Handler Html
 getPetsR = 
            defaultLayout $ do
-               addStylesheet $ StaticR teste_css
+               addStylesheet $ StaticR style_css
                toWidget $ $(whamletFile "templates/animal.hamlet")
            
 -- CADASTRO DO ANIMAL
 getCadastroR ::  Handler Html
 getCadastroR = do
            (widget, enctype) <- generateFormPost formAnimal
-           defaultLayout [whamlet|
-                 <form method=post enctype=#{enctype} action=@{PetsR}>
-                     ^{widget}
-                     <input type="submit" value="Enviarr">
-           |]
+           defaultLayout $ do
+               addStylesheet $ StaticR style_css
+               toWidget $ $(whamletFile "templates/cadastro.hamlet")
 
 getAnimalR :: AnimalId -> Handler Html
 getAnimalR aid = do
       user <- runDB $ get404 aid
       defaultLayout $ do
-          addStylesheet $ StaticR teste_css
+          addStylesheet $ StaticR style_css
           toWidget $ $(whamletFile "templates/perfil.hamlet")
 
 
--- PÁGINA INICIAL           
+-- PÁGINA INICIAL (ANTES DO LOGIN)           
 getHomeR :: Handler Html
 getHomeR = defaultLayout $ do
-               addStylesheet $ StaticR teste_css
+               addStylesheet $ StaticR style_css
                toWidget $ $(whamletFile "templates/home.hamlet")
+               
+-- PÁGINA INICIAL (DEPOIS DO LOGIN)
+getInicioR :: Handler Html
+getInicioR = defaultLayout $ do
+               addStylesheet $ StaticR style_css
+               toWidget $ $(whamletFile "templates/inicio.hamlet")
+
 
 -- PÁGINA INICIAL DO ADMIN
 getAdminR :: Handler Html
 getAdminR = defaultLayout $ do
-           addStylesheet $ StaticR teste_css
+           addStylesheet $ StaticR style_css
            [whamlet|
                <label> Bem-vindo ao sistema!
                <ul>
@@ -243,7 +249,7 @@ getLoginR :: Handler Html
 getLoginR = do
            (widget, enctype) <- generateFormPost formLogin
            defaultLayout $ do
-           addStylesheet $ StaticR teste_css
+           addStylesheet $ StaticR style_css
            toWidget $ $(whamletFile "templates/login.hamlet")
 {-           [whamlet|
            <div id="form_login">

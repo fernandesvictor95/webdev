@@ -1,0 +1,251 @@
+html{
+    padding:0;
+    margin:0;
+}
+
+body{
+	margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#content_login{
+    background-image: url('../images/background.png');
+    margin: 0;
+}
+
+
+#form_login{
+	position: relative;
+    margin: 0 auto;
+    width: 50%;
+    height: auto;
+    text-align: center;
+    margin-top: 10%;
+}
+
+#form_area{
+	background-color: #151515;
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 35px 35px 22px 35px;
+}
+
+label{
+	position: relative;
+    width: 11%;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+    display: table-cell;
+    background-color: #c49a3d;
+    color: #fff;
+    border: 1px solid #c49a3d;
+    border-radius: 5px 5px 0 0;
+}
+
+.required{
+	margin-bottom: 10px;
+}
+
+#hident2, #hident3{
+	position: relative;
+	width: 100%;
+	height: auto;
+	border-radius: 0 0 5px 5px;
+	background-color: transparent;
+    border: 1px solid #c49a3d;
+    color: #c49a3d;
+}
+
+input[type="text"]{
+	position: relative;
+	margin: 0 auto;
+	height: 30px;
+	 box-sizing: border-box;
+    padding: 6px;
+    border: 0;
+    width: 100%;
+}
+
+input[type="password"]{
+	position: relative;
+	margin: 0 auto;
+	height: 30px;
+	box-sizing: border-box;
+    padding: 6px;
+    border: 0;
+    width: 100%;
+}
+
+input[type="submit"]{
+	position: relative;
+    width: 100px;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+    display: table-cell;
+    background-color: #c49a3d;
+    color: #fff;
+    border: 1px solid #c49a3d;
+}
+
+
+#home_top{
+    position: relative;
+    background-image: url(@{_Background_png});
+    height: auto;
+    text-align: center;
+}
+
+.footer{
+    position: relative;
+    background-color: #222;
+    text-align: center;
+    font-family: 'Open Sans';
+    height: auto;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 14px;
+    text-transform: uppercase;
+    border-top: 1px solid #c49a3d;
+}
+
+.welcome_msg{
+    position: relative;
+    width: 80%;
+    margin: 5% auto;
+}
+
+.txtcorrido {
+    margin-bottom: 20px;
+}
+
+span.adote_citado {
+    font-weight: 600;
+}
+
+.divcinza {
+    width: 100%;
+    position: relative;
+    height: auto;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background-color: #111;
+    text-align: center;
+    border-top: 10px solid #c49a3d;
+}
+
+.nomargin{
+    margin-bottom: 0;
+}
+
+.opc_menu {
+    position: relative;
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    padding: 50px;
+}
+
+p.btn_opc {
+    background-image: url('../images/transparencia_preto_60.png');
+    text-transform: uppercase;
+    border-radius: 5px;
+    border: 1px solid #c49a3d;
+    width: 135px;
+    height: 32px;
+    margin: 5% auto;
+    box-sizing: border-box;
+    padding: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #c49a3d;
+}
+
+.img_opc{
+    width:100%;
+    margin:5% auto;
+}
+
+
+.branco{
+    color: #fff;
+}
+
+.bege{
+    color:#c49a3d;
+}
+
+.header{
+    position: relative;
+    width: 100%;
+    background-color: #222;
+    color: #fff;
+    height: 50px;
+}
+
+.header a, .header p{
+    display: inline-block;
+}
+
+.header p{
+
+}
+
+a{
+    text-decoration: none;
+}
+
+.itens_menu{
+    position: absolute;
+    width: 50%;
+}
+
+.esq{
+    left: 10px;
+    top: 13px;
+}
+
+.dir{
+    right: 20px;
+    top: 13px;
+    text-align: right;
+}
+
+.negrito{
+    font-weight: 600;
+}
+
+.divtxt{
+    color: #999;
+    margin: 0 2%;
+}
+
+.titulo_footer{
+    font-size: 25px;
+}
+
+.sub_footer{
+    font-size: 14px;
+}
+
+.content_area{
+    position: relative;
+    width: 70%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 20px;
+    height: auto;
+}
