@@ -181,7 +181,7 @@ getUsuarioR :: Handler Html
 getUsuarioR = do
            (widget, enctype) <- generateFormPost formUser
            defaultLayout [whamlet|
-                 <form method=post enctype=#{enctype} action=@{LoginR}>
+                 <form method=post enctype=#{enctype} action=@{LogginR}>
                      ^{widget}
                      <input type="submit" value="Enviar">
            |]
@@ -251,18 +251,6 @@ getLoginR = do
            defaultLayout $ do
            addStylesheet $ StaticR style_css
            toWidget $ $(whamletFile "templates/login.hamlet")
-{-           [whamlet|
-           <div id="form_login">
-                
-                <div id="form_area">
-                    <form method=post enctype=#{enctype} action=@{LoginR}>
-                       
-                            ^{widget}
-                        <input type="submit" value="Entrar">
-           |]
-           
-            
--}
 
 -- PÁGINA DE ERRO
 getErroR :: Handler Html

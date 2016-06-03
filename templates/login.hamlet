@@ -3,6 +3,8 @@ $doctype 5
         <title>Adote 1 Parça</title>
     <body id="content_login">
         <div id="form_login">
+            <div id="logo">
+                <img src=@{StaticR _Logo_png>
             <div id="form_area">
                 <form method=post enctype=#{enctype} action=@{InicioR}>
                     ^{widget}
