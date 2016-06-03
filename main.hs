@@ -180,11 +180,9 @@ postCadastroR = do
 getUsuarioR :: Handler Html
 getUsuarioR = do
            (widget, enctype) <- generateFormPost formUser
-           defaultLayout [whamlet|
-                 <form method=post enctype=#{enctype} action=@{LogginR}>
-                     ^{widget}
-                     <input type="submit" value="Enviar">
-           |]
+           defaultLayout $ do
+               addStylesheet $ StaticR style_css
+               toWidget $ $(whamletFile "templates/usuario.hamlet")
            
 
 
