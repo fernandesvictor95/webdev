@@ -21,7 +21,7 @@ body{
     width: 50%;
     height: auto;
     text-align: center;
-    margin-top: 10%;
+    margin-top: 4%;
 }
 
 #form_area{
@@ -112,7 +112,6 @@ input[type="submit"]{
     position: relative;
     background-color: #222;
     text-align: center;
-    font-family: 'Open Sans';
     height: auto;
     box-sizing: border-box;
     margin: 0 auto;

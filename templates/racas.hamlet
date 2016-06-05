@@ -9,11 +9,11 @@
         <div id="home_top">
             <img src=@{StaticR _Logo_png}>
         <div class="welcome_msg">
-            <p class="txtcorrido">Doação de animais</p>
-            <p class="txtcorrido">Esses são os animais disponíveis para adoção aqui no site. Se quiser cadastrar mais um, clique aqui.</p>
+            <p class="txtcorrido">Cadastro de Raça</p>
+            
         <div class="divcinza">
             <div class="content_area">
-                <form method=post enctype=#{enctype} action=@{PetsR}>
+                <form method=post enctype=#{enctype} action=@{CadRacaR}>
                      ^{widget}
                      <input type="submit" value="Enviar">
         <div class="footer">

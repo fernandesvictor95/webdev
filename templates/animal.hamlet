@@ -14,10 +14,10 @@
         <div class="divcinza">
             <div class="content_area">
                 <table>
-                  
-                    <tr>
-                        <td>
-                            
+                    $forall Entity aid animal <- listaAnimal 
+                        <tr>
+                            <td>
+                                #{animalNome animal}
                         
         <div class="footer">
             <p class="bege negrito titulo_footer">Adote 1 Parça</p>

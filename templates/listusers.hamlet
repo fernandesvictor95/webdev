@@ -7,15 +7,18 @@
                 <a href=@{UsuarioR} class="menu branco">Minha Conta</a> <span class="divtxt">|</span>
                 <a href=@{LogoutR} class="menu branco">Logout</a>
         <div id="home_top">
-            <img src=@{StaticR _Logo_png}>
+            <img src="../images/logo.png" />
         <div class="welcome_msg">
-            <p class="txtcorrido">Doação de animais</p>
-            <p class="txtcorrido">Esses são os animais disponíveis para adoção aqui no site. Se quiser cadastrar mais um, clique aqui.</p>
+            <p class="txtcorrido">Lista de usuários</p>
+            <p class="txtcorrido">Estes são todos os usuários existentes na base de dados:</p>
         <div class="divcinza">
             <div class="content_area">
-                <form method=post enctype=#{enctype} action=@{PetsR}>
-                     ^{widget}
-                     <input type="submit" value="Enviar">
+                <table>
+                    $forall Entity uid usuario <- listaUsuarios 
+                        <tr>
+                            <td>
+                                #{usuarioNome usuario}
+                        
         <div class="footer">
             <p class="bege negrito titulo_footer">Adote 1 Parça</p>
             <p class="branco sub_footer">Dayane, Stephany e Victor</p>

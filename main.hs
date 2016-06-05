@@ -59,6 +59,8 @@ mkYesod "Adote" [parseRoutes|
 /cadastro CadastroR GET POST            -- cadastro de animal
 /animal/#AnimalId AnimalR GET           -- perfil do animal
 /pets PetsR GET                         -- menu com todos os pets
+/cad_especie CadEspecieR GET POST       -- cadastro de espécies
+/cad_raca CadRacaR GET POST             -- cadastro de raças
 /logout LogoutR GET
 /static StaticR Static getStatic
 
@@ -76,6 +78,8 @@ instance Yesod Adote where
     isAuthorized PetsR _ = return Authorized
     isAuthorized InicioR _ = return Authorized
     isAuthorized AdminR _ = isAdmin
+    isAuthorized CadEspecieR _ = isAdmin
+    isAuthorized CadRacaR _ = isAdmin
     isAuthorized _ _ = isUser
 
 isUser = do
@@ -89,7 +93,7 @@ isAdmin = do
     return $ case mu of
         Nothing -> AuthenticationRequired
         Just "admin" -> Authorized 
-        Just _ -> Unauthorized "Voce precisa ser admin para entrar aqui"
+        Just _ -> Unauthorized "Voce precisa ser um administrador para acessar essa página"
     
 
 instance YesodPersist Adote where
@@ -146,15 +150,13 @@ listarRacas = do
        entidades <- runDB $ selectList [] [Asc RacaNome] 
        optionsPairs $ fmap (\ent -> (racaNome $ entityVal ent, entityKey ent)) entidades
           
-{- formRaca :: Form Raca
+formRaca :: Form Raca
 formRaca = renderDivs $ Raca <$> 
-        areq textField                    "Nome :"  Nothing
-        {- areq (selectField listarEspecies) "Espécie" Nothing -}
--}
+        areq textField "Nome :" Nothing
         
-{- formEspecie :: Form Especie
+formEspecie :: Form Especie
 formEspecie = renderDivs $ Especie <$> 
-        areq textField "Nome: " Nothing -}
+        areq textField "Nome: " Nothing
 
 ----------------------- POSTS
 
@@ -168,7 +170,7 @@ postLoginR = do
                    user <- runDB $ selectFirst [UsuarioLogin ==. login, UsuarioSenha ==. senha] []
                    case user of
                        Nothing -> redirect LoginR
-                       Just (Entity pid u) -> setSession "_ID" "admin" >> redirect (pack $ show $ fromSqlKey pid) >> redirect (PerfilR pid)
+                       Just (Entity pid u) -> setSession "_ID" (pack $ show $ fromSqlKey pid) >> redirect (PerfilR pid)
                _ -> redirect ErroR
                
 -- validação cadastro de usuário
@@ -188,7 +190,22 @@ postCadastroR = do
                FormSuccess animal -> (runDB $ insert animal) >>= \aiid -> redirect (AnimalR aiid)
                _ -> redirect ErroR
 
-
+-- validação cadastro de espécie
+postCadEspecieR :: Handler Html
+postCadEspecieR = do
+           ((result, _), _) <- runFormPost formEspecie
+           case result of 
+               FormSuccess especie -> (runDB $ insert especie) >>= \eiid -> redirect (CadEspecieR)
+               _ -> redirect ErroR
+               
+               
+-- validação cadastro de raça
+postCadRacaR :: Handler Html
+postCadRacaR = do
+           ((result, _), _) <- runFormPost formRaca
+           case result of 
+               FormSuccess raca -> (runDB $ insert raca) >>= \riid -> redirect (CadRacaR)
+               _ -> redirect ErroR
 
 
 ----------------------- GETS
@@ -215,10 +232,11 @@ getPerfilR uid = do
 
 -- PÁGINA COM TODOS OS PETS
 getPetsR :: Handler Html
-getPetsR = 
-           defaultLayout $ do
-               addStylesheet $ StaticR style_css
-               toWidget $ $(whamletFile "templates/animal.hamlet")
+getPetsR = do
+        listaAnimal <- runDB $ selectList [] [Asc AnimalNome]
+        defaultLayout $ do
+            addStylesheet $ StaticR style_css
+            toWidget $ $(whamletFile "templates/animal.hamlet")
            
 -- CADASTRO DO ANIMAL
 getCadastroR ::  Handler Html
@@ -228,6 +246,7 @@ getCadastroR = do
                addStylesheet $ StaticR style_css
                toWidget $ $(whamletFile "templates/doacoes.hamlet")
 
+-- PERFIL DO ANIMAL
 getAnimalR :: AnimalId -> Handler Html
 getAnimalR aid = do
       user <- runDB $ get404 aid
@@ -235,6 +254,21 @@ getAnimalR aid = do
           addStylesheet $ StaticR style_css
           toWidget $ $(whamletFile "templates/perfil.hamlet")
 
+-- CADASTRO DE ESPÉCIE
+getCadEspecieR ::  Handler Html
+getCadEspecieR = do
+           (widget, enctype) <- generateFormPost formEspecie
+           defaultLayout $ do
+               addStylesheet $ StaticR style_css
+               toWidget $ $(whamletFile "templates/especies.hamlet")
+               
+-- CADASTRO DE RAÇA
+getCadRacaR ::  Handler Html
+getCadRacaR = do
+           (widget, enctype) <- generateFormPost formRaca
+           defaultLayout $ do
+               addStylesheet $ StaticR style_css
+               toWidget $ $(whamletFile "templates/racas.hamlet")
 
 -- PÁGINA INICIAL (ANTES DO LOGIN)           
 getHomeR :: Handler Html
