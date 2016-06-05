@@ -287,12 +287,7 @@ getInicioR = defaultLayout $ do
 getAdminR :: Handler Html
 getAdminR = defaultLayout $ do
            addStylesheet $ StaticR style_css
-           [whamlet|
-               <label> Bem-vindo ao sistema!
-               <ul>
-                  <li> <a href=@{CadastroR}> Cadastro do pet
-                  <img src=@{StaticR cachorro_jpg}>
-|]
+           toWidget $ $(whamletFile "templates/admin.hamlet")
 
 -- PÁGINA DE LOGIN (FORMULÁRIO)
 getLoginR :: Handler Html

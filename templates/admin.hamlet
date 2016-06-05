@@ -1,0 +1,33 @@
+$doctype 5
+    <html>
+       <head>
+          <title>Adote 1 Parça</title>
+        <body>
+            <div class="header">
+                <div class="itens_menu esq">
+                <a href=@{HomeR} class="bege negrito"><p>ADOTE 1 PARÇA</p></a>
+            
+            <div class="itens_menu dir">
+                <a href=@{UsuarioR} class="menu branco">Minha Conta</a> <span class="divtxt">|</span>
+                <a href=@{LogoutR} class="menu branco">Logout</a>
+            <div id="home_top">
+                <img src=@{StaticR _Logo_png}>
+            
+            <div class="welcome_msg">
+                <p class="txtcorrido">Olá, Admin!</p>
+                <p class="txtcorrido">Você tem as seguintes opções disponíveis:
+            
+            <div class="divcinza">
+                <div class="opc_menu">
+                    <img src=@{StaticR doacoes_png} class="img_opc" />
+                    <p class="txtcorrido branco nomargin">Encontrou um animal abandonado</p>
+                    <p class="txtcorrido bege nomargin">ou</p>
+                    <p class="txtcorrido branco">não pode mais cuidar do seu?</p>
+                    <p class="btn_opc"><a href=@{CadastroR} class="bege">Clique aqui!</a></p>
+                <div class="opc_menu">
+                    <img src=@{StaticR adocoes_png} class="img_opc" />
+                    <p class="txtcorrido branco">Quer adotar 1 (ou vários) parça(s)?</p>
+                    <p class="btn_opc"><a href=@{PetsR} class="bege">Clique aqui!</a></p>
+            <div class="footer">
+                <p class="bege negrito titulo_footer">Adote 1 Parça</p>
+                <p class="branco sub_footer">Dayane, Stephany e Victor</p>
