@@ -1,0 +1,24 @@
+    <body>
+        <div class="header">
+            <div class="itens_menu esq">
+                <a href=@{HomeR} class="bege negrito"><p>ADOTE 1 PARÇA</p></a>
+        <div class="btn_voltar"><-</div>
+            <div class="itens_menu dir">
+                <a href=@{UsuarioR} class="menu branco">Minha Conta</a> <span class="divtxt">|</span>
+                <a href=@{LogoutR} class="menu branco">Logout</a>
+        <div id="home_top">
+            <img src=@{StaticR _Logo_png}>
+        <div class="welcome_msg">
+            <p class="txtcorrido">Lista de Espécies</p>
+            <p class="txtcorrido">Essas são todas as espécies cadastradas até o momento.</p>
+        <div class="divcinza">
+            <div class="content_area">
+                <table>
+                    $forall Entity eid especie <- listaEspecies 
+                        <tr>
+                            <td>
+                                #{especieNome especie}
+                        
+        <div class="footer">
+            <p class="bege negrito titulo_footer">Adote 1 Parça</p>
+            <p class="branco sub_footer">Dayane, Stephany e Victor</p>

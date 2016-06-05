@@ -61,6 +61,9 @@ mkYesod "Adote" [parseRoutes|
 /pets PetsR GET                         -- menu com todos os pets
 /cad_especie CadEspecieR GET POST       -- cadastro de espécies
 /cad_raca CadRacaR GET POST             -- cadastro de raças
+/usuarios UsuariosR GET                 -- lista de usuários
+/especies EspeciesR GET                 -- lista de espécies
+/raca RacasR GET                         -- lista de raças
 /logout LogoutR GET
 /static StaticR Static getStatic
 
@@ -80,6 +83,7 @@ instance Yesod Adote where
     isAuthorized AdminR _ = isAdmin
     isAuthorized CadEspecieR _ = isAdmin
     isAuthorized CadRacaR _ = isAdmin
+    isAuthorized UsuariosR _ = isAdmin
     isAuthorized _ _ = isUser
 
 isUser = do
@@ -229,6 +233,13 @@ getPerfilR uid = do
           addStylesheet $ StaticR style_css
           toWidget $ $(whamletFile "templates/perfil.hamlet")
 
+-- PÁGINA COM TODOS OS USUÁRIOS
+getUsuariosR :: Handler Html
+getUsuariosR = do
+        listaUsuarios <- runDB $ selectList [] [Asc UsuarioNome]
+        defaultLayout $ do
+            addStylesheet $ StaticR style_css
+            toWidget $ $(whamletFile "templates/listusers.hamlet")
 
 -- PÁGINA COM TODOS OS PETS
 getPetsR :: Handler Html
@@ -237,6 +248,22 @@ getPetsR = do
         defaultLayout $ do
             addStylesheet $ StaticR style_css
             toWidget $ $(whamletFile "templates/animal.hamlet")
+            
+-- PÁGINA COM TODAS AS RAÇAS
+getRacasR :: Handler Html
+getRacasR = do
+        listaRacas <- runDB $ selectList [] [Asc RacaNome]
+        defaultLayout $ do
+            addStylesheet $ StaticR style_css
+            toWidget $ $(whamletFile "templates/listracas.hamlet")
+            
+-- PÁGINA COM TODAS AS ESPÉCIES
+getEspeciesR :: Handler Html
+getEspeciesR = do
+        listaEspecies <- runDB $ selectList [] [Asc EspecieNome]
+        defaultLayout $ do
+            addStylesheet $ StaticR style_css
+            toWidget $ $(whamletFile "templates/listespecies.hamlet")
            
 -- CADASTRO DO ANIMAL
 getCadastroR ::  Handler Html
