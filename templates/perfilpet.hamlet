@@ -1,10 +1,8 @@
     <body>
         <div class="header">
             <div class="itens_menu esq">
-                <a href=@{HomeR} class="bege negrito"><p>ADOTE 1 PARÇA</p></a>
-        <div class="btn_voltar"><-</div>
+                <a href=@{InicioR} class="bege negrito"><p>ADOTE 1 PARÇA</p></a>
             <div class="itens_menu dir">
-                <a href=@{UsuarioR} class="menu branco">Minha Conta</a> <span class="divtxt">|</span>
                 <a href=@{LogoutR} class="menu branco">Logout</a>
         <div id="home_top">
             <img src=@{StaticR _Logo_png}>
@@ -12,7 +10,7 @@
             <p class="txtcorrido">ANIMAIS PARA ADOÇÃO</p>
             <p class="txtcorrido">Esses são os animais disponíveis para adoção aqui no site. Se quiser cadastrar mais um, clique aqui.</p>
         <div class="divcinza">
-             <table .informacoes>
+            <table .informacoes>
                 <tr>
                     <th>Nome</th>
                     <th>Idade</th>
@@ -30,6 +28,7 @@
                         <td>#{animalObservacoes pet}</td>
                         <td>#{especieNome especie}</td>
                         <td>#{racaNome raca}</td>
+            <a href=@{InicioR}><p .btn_direcoes>Voltar para a ágina inicial</p></a>
         <div class="footer">
             <p class="bege negrito titulo_footer">Adote 1 Parça</p>
             <p class="branco sub_footer">Dayane, Stephany e Victor</p>

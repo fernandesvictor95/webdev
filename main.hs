@@ -5,6 +5,7 @@
 import Yesod
 import Database.Persist.Postgresql
 import Data.Text
+import Data.Maybe
 import Text.Lucius
 import Control.Monad.Logger (runStdoutLoggingT)
 import Yesod.Static

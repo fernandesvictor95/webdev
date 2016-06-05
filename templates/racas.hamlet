@@ -1,7 +1,7 @@
     <body>
         <div class="header">
             <div class="itens_menu esq">
-                <a href=@{HomeR} class="bege negrito"><p>ADOTE 1 PARÇA</p></a>
+                <a href=@{AdminR} class="bege negrito"><p>ADOTE 1 PARÇA</p></a>
         <div class="btn_voltar"><-</div>        
             <div class="itens_menu dir">
                 <a href=@{UsuarioR} class="menu branco">Minha Conta</a> <span class="divtxt">|</span>
@@ -16,6 +16,7 @@
                 <form method=post enctype=#{enctype} action=@{CadRacaR}>
                      ^{widget}
                      <input type="submit" value="Enviar">
+                <a href=@{AdminR}><p .btn_direcoes>Voltar para a página inicial</p></a>
         <div class="footer">
             <p class="bege negrito titulo_footer">Adote 1 Parça</p>
             <p class="branco sub_footer">Dayane, Stephany e Victor</p>
