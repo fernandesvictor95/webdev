@@ -10,7 +10,7 @@ body{
 }
 
 #content_login{
-    background-image: url('http://i64.tinypic.com/34htmc7.png');
+    background-image: url('https://imagizer.imageshack.us/v2/788x653q90/922/cSkkj6.png');
     margin: 0;
 }
 
@@ -103,7 +103,7 @@ input[type="submit"]{
 
 #home_top{
     position: relative;
-    background-image: url(@{_Background_png});
+    background-image: url('https://imagizer.imageshack.us/v2/788x653q90/922/cSkkj6.png');
     height: auto;
     text-align: center;
 }
@@ -160,7 +160,7 @@ span.adote_citado {
 }
 
 p.btn_opc {
-    background-image: url('../images/transparencia_preto_60.png');
+    background-image: url('http://imageshack.com/a/img924/1517/KttNkk.png');
     text-transform: uppercase;
     border-radius: 5px;
     border: 1px solid #c49a3d;
