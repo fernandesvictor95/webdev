@@ -226,7 +226,7 @@ getCadastroR = do
            (widget, enctype) <- generateFormPost formAnimal
            defaultLayout $ do
                addStylesheet $ StaticR style_css
-               toWidget $ $(whamletFile "templates/cadastro.hamlet")
+               toWidget $ $(whamletFile "templates/doacoes.hamlet")
 
 getAnimalR :: AnimalId -> Handler Html
 getAnimalR aid = do

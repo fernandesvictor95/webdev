@@ -13,7 +13,7 @@
             <p class="txtcorrido">Você poderá fazer parte da nossa rede após preencher o formulário abaixo:</p>
         <div class="divcinza">
             <div class="content_area">
-                <form method=post enctype=#{enctype} action=@{LoginR}>
+                <form method=post enctype=#{enctype} action=@{UsuarioR}>
                      ^{widget}
                      <input type="submit" value="Enviar">
         <div class="footer">
