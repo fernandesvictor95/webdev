@@ -203,6 +203,17 @@ p.btn_opc {
     margin: 0;
 }
 
+.opcao_admin {
+    display: inline-block;
+    background-color: #c49a3d;
+    color: #fff;
+    box-sizing: border-box;
+    padding: 8px;
+    margin: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
 a{
     text-decoration: none;
 }

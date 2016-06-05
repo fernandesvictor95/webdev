@@ -63,7 +63,7 @@ mkYesod "Adote" [parseRoutes|
 /cad_raca CadRacaR GET POST             -- cadastro de raças
 /usuarios UsuariosR GET                 -- lista de usuários
 /especies EspeciesR GET                 -- lista de espécies
-/raca RacasR GET                         -- lista de raças
+/racas RacasR GET                         -- lista de raças
 /logout LogoutR GET
 /static StaticR Static getStatic
 

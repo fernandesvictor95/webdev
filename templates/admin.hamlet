@@ -16,10 +16,10 @@ $doctype 5
             <div class="welcome_msg">
                 <p class="txtcorrido">Olá, Admin!</p>
                 <p class="txtcorrido">Você tem as seguintes opções disponíveis:</p>
-                <a href=@{CadEspecieR}<p class="opcao_admin">Cadastrar Espécie</p></a>
-                <a href=@{CadRacaR}<p class="opcao_admin">Cadastrar Raça</p></a>
-                <a href=@{CadastroR}<p class="opcao_admin">Cadastrar Animal</p></a>
-                <a href=@{InicioR}<p class="opcao_admin">Gerenciar Usuários</p></a>
+                <a href=@{CadEspecieR} class="opcao_admin">Cadastrar Espécie</a>
+                <a href=@{CadRacaR} class="opcao_admin">Cadastrar Raça</a>
+                <a href=@{CadastroR} class="opcao_admin">Cadastrar Animal</a>
+                <a href=@{UsuariosR} class="opcao_admin">Gerenciar Usuários</a>
             <div class="footer">
                 <p class="bege negrito titulo_footer">Adote 1 Parça</p>
                 <p class="branco sub_footer">Dayane, Stephany e Victor</p>
