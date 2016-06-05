@@ -27,22 +27,22 @@ Usuario json
    deriving Show
    
 Animal json
-   especie Text
    nome Text
-   raca Text
    idade Text
    peso Text
    tamanho Text
    observacoes Text
+   especieid EspecieId 
+   racaid RacaId
    deriving Show
    
 Especie json
-    id_especie Int
     nome Text
+    deriving Show
    
 Raca json
-    id_raca Int
     nome Text
+    deriving Show
    
 |]
 
@@ -74,6 +74,7 @@ instance Yesod Adote where
     isAuthorized UsuarioR _ = return Authorized
     isAuthorized CadastroR _ = return Authorized
     isAuthorized PetsR _ = return Authorized
+    isAuthorized InicioR _ = return Authorized
     isAuthorized AdminR _ = isAdmin
     isAuthorized _ _ = isUser
 
@@ -129,14 +130,31 @@ formLogin = renderDivs $ (,) <$>
 -- cadastro de animal           
 formAnimal :: Form Animal
 formAnimal = renderDivs $ Animal <$>
-          areq textField "Espécie: " Nothing <*> 
           areq textField "Nome: " Nothing <*>
-          areq textField "Raça: " Nothing <*>
           areq textField "Idade: " Nothing <*>
           areq textField "Peso: " Nothing <*>
           areq textField "Tamanho: " Nothing <*>
-          areq textField "Observações: " Nothing 
+          areq textField "Obs.: " Nothing <*>
+          areq (selectField listarEspecies) "Espécie" Nothing <*>
+          areq (selectField listarRacas) "Raça" Nothing
 
+listarEspecies = do
+       entidades <- runDB $ selectList [] [Asc EspecieNome] 
+       optionsPairs $ fmap (\ent -> (especieNome $ entityVal ent, entityKey ent)) entidades
+       
+listarRacas = do
+       entidades <- runDB $ selectList [] [Asc RacaNome] 
+       optionsPairs $ fmap (\ent -> (racaNome $ entityVal ent, entityKey ent)) entidades
+          
+{- formRaca :: Form Raca
+formRaca = renderDivs $ Raca <$> 
+        areq textField                    "Nome :"  Nothing
+        {- areq (selectField listarEspecies) "Espécie" Nothing -}
+-}
+        
+{- formEspecie :: Form Especie
+formEspecie = renderDivs $ Especie <$> 
+        areq textField "Nome: " Nothing -}
 
 ----------------------- POSTS
 
@@ -150,15 +168,15 @@ postLoginR = do
                    user <- runDB $ selectFirst [UsuarioLogin ==. login, UsuarioSenha ==. senha] []
                    case user of
                        Nothing -> redirect LoginR
-                       Just (Entity pid u) -> setSession "_ID" (pack $ show $ fromSqlKey pid) >> redirect (PerfilR pid)
+                       Just (Entity pid u) -> setSession "_ID" "admin" >> redirect (pack $ show $ fromSqlKey pid) >> redirect (PerfilR pid)
                _ -> redirect ErroR
-
+               
 -- validação cadastro de usuário
 postUsuarioR :: Handler Html
 postUsuarioR = do
            ((result, _), _) <- runFormPost formUser
            case result of 
-               FormSuccess user -> (runDB $ insert user) >>= \piid -> redirect (PerfilR piid)
+               FormSuccess user -> (runDB $ insert user) >>= \piid -> redirect InicioR 
                _ -> redirect ErroR
 
 

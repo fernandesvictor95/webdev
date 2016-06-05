@@ -4,8 +4,8 @@ $doctype 5
     <body id="content_login">
         <div id="form_login">
             <div id="logo">
-                <img src=@{StaticR _Logo_png>
+                <img src=@{StaticR _Logo_png}>
             <div id="form_area">
-                <form method=post enctype=#{enctype} action=@{InicioR}>
+                <form method=post enctype=#{enctype} action=@{LoginR}>
                     ^{widget}
                      <input type="submit" value="Entrar">

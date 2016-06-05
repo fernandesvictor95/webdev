@@ -1,0 +1,3 @@
+#content_login{
+    background-image: url(@{StaticR _Background_png});
+}
