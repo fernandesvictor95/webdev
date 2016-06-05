@@ -137,6 +137,7 @@ span.adote_citado {
     background-color: #111;
     text-align: center;
     border-top: 10px solid #c49a3d;
+    overflow: hidden;
 }
 
 .nomargin{
@@ -262,4 +263,16 @@ a{
     z-index: 1;
     top: 364px;
     color: #fff;
+}
+
+.informacoes{
+    width: 90%;
+    color: #c49a3d;
+    border: 1px solid #c49a3d;
+    margin: 10px auto;
+}
+
+.informacoes th{
+    background-color: #c49a3d;
+    color: #000;
 }

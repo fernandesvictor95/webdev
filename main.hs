@@ -285,10 +285,10 @@ getCadastroR = do
 -- PERFIL DO ANIMAL
 getAnimalR :: AnimalId -> Handler Html
 getAnimalR aid = do
-      pet <- runDB $ get404 aid
-      defaultLayout $ do
-          addStylesheet $ StaticR style_css
-          toWidget $ $(whamletFile "templates/perfilpet.hamlet")
+        pets <- runDB $ (rawSql "SELECT ??, ??, ?? FROM animal INNER JOIN raca ON animal.racaid=raca.id INNER JOIN especie ON animal.especieid = especie.id WHERE animal.id = ?;" [toPersistValue aid])::Handler [(Entity Animal, Entity Raca, Entity Especie)]
+        defaultLayout $ do
+            addStylesheet $ StaticR style_css
+            toWidget $ $(whamletFile "templates/perfilpet.hamlet")
 
 -- CADASTRO DE ESPÉCIE
 getCadEspecieR ::  Handler Html
