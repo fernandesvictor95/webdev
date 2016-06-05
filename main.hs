@@ -58,12 +58,13 @@ mkYesod "Adote" [parseRoutes|
 /perfil/#UsuarioId PerfilR GET          -- perfil de usuário
 /cadastro CadastroR GET POST            -- cadastro de animal
 /animal/#AnimalId AnimalR GET           -- perfil do animal
-/pets PetsR GET                         -- menu com todos os pets
+/pets PetsR GET                         -- lista de todos os animais (usuário)
+/gerenciar_pets GerenciarPetsR GET      -- lista de todos os animais (admin)
 /cad_especie CadEspecieR GET POST       -- cadastro de espécies
 /cad_raca CadRacaR GET POST             -- cadastro de raças
 /usuarios UsuariosR GET                 -- lista de usuários
 /especies EspeciesR GET                 -- lista de espécies
-/racas RacasR GET                         -- lista de raças
+/racas RacasR GET                       -- lista de raças
 /logout LogoutR GET
 /static StaticR Static getStatic
 
@@ -240,6 +241,14 @@ getUsuariosR = do
         defaultLayout $ do
             addStylesheet $ StaticR style_css
             toWidget $ $(whamletFile "templates/listusers.hamlet")
+
+-- PÁGINA COM TODOS OS PETS
+getGerenciarPetsR :: Handler Html
+getGerenciarPetsR = do
+        listaAnimal <- runDB $ selectList [] [Asc AnimalNome]
+        defaultLayout $ do
+            addStylesheet $ StaticR style_css
+            toWidget $ $(whamletFile "templates/listanimais.hamlet")
 
 -- PÁGINA COM TODOS OS PETS
 getPetsR :: Handler Html
