@@ -2,7 +2,7 @@
         <div class="header">
             <div class="itens_menu esq">
                 <a href=@{HomeR} class="bege negrito"><p>ADOTE 1 PARÇA</p></a>
-                
+        <div class="btn_voltar"><-</div>
             <div class="itens_menu dir">
                 <a href=@{UsuarioR} class="menu branco">Minha Conta</a> <span class="divtxt">|</span>
                 <a href=@{LogoutR} class="menu branco">Logout</a>
