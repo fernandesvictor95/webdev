@@ -35,30 +35,24 @@ body{
 
 label{
 	position: relative;
-    width: 11%;
     height: 30px;
-    box-sizing: border-box;
-    padding: 6px;
-    text-align: center;
+    text-align: left;
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 400;
     display: table-cell;
-    background-color: #c49a3d;
-    color: #fff;
-    border: 1px solid #c49a3d;
-    border-radius: 5px 5px 0 0;
+    color: #c49a3d;
 }
 
 .required{
 	margin-bottom: 10px;
 }
 
-#hident2, #hident3{
+#hident2, #hident3, #hident4, #hident5, #hident6, #hident7, #hident8, #hident9, #hident10{
 	position: relative;
-	width: 100%;
+	width: 500px;
 	height: auto;
-	border-radius: 0 0 5px 5px;
+	border-radius: 5px;
 	background-color: transparent;
     border: 1px solid #c49a3d;
     color: #c49a3d;

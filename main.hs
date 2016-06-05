@@ -183,7 +183,7 @@ postUsuarioR :: Handler Html
 postUsuarioR = do
            ((result, _), _) <- runFormPost formUser
            case result of 
-               FormSuccess user -> (runDB $ insert user) >>= \piid -> redirect InicioR 
+               FormSuccess user -> (runDB $ insert user) >>= \piid -> redirect (PerfilR piid) 
                _ -> redirect ErroR
 
 
@@ -229,10 +229,10 @@ getUsuarioR = do
 -- PERFIL DO USUÁRIO
 getPerfilR :: UsuarioId -> Handler Html
 getPerfilR uid = do
-      user <- runDB $ get404 uid
-      defaultLayout $ do
-          addStylesheet $ StaticR style_css
-          toWidget $ $(whamletFile "templates/perfil.hamlet")
+        user <- runDB $ get404 uid
+        defaultLayout $ do
+            addStylesheet $ StaticR style_css
+            toWidget $ $(whamletFile "templates/perfil.hamlet")
 
 -- PÁGINA COM TODOS OS USUÁRIOS
 getUsuariosR :: Handler Html
@@ -285,10 +285,10 @@ getCadastroR = do
 -- PERFIL DO ANIMAL
 getAnimalR :: AnimalId -> Handler Html
 getAnimalR aid = do
-      user <- runDB $ get404 aid
+      pet <- runDB $ get404 aid
       defaultLayout $ do
           addStylesheet $ StaticR style_css
-          toWidget $ $(whamletFile "templates/perfil.hamlet")
+          toWidget $ $(whamletFile "templates/perfilpet.hamlet")
 
 -- CADASTRO DE ESPÉCIE
 getCadEspecieR ::  Handler Html
