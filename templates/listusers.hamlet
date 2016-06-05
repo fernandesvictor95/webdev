@@ -13,7 +13,10 @@
             <p class="txtcorrido">Estes são todos os usuários existentes na base de dados:</p>
         <div class="divcinza">
             <div class="content_area">
-                <table>
+                <table .informacoes>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Opções</th>
                     $forall Entity uid usuario <- listaUsuarios 
                         <tr>
                             <td>

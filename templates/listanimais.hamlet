@@ -13,7 +13,10 @@
             <p class="txtcorrido">Esses são os animais disponíveis para adoção aqui no site. Se quiser cadastrar mais um, clique aqui.</p>
         <div class="divcinza">
             <div class="content_area">
-                <table>
+                <table .informacoes>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Opções</th>
                     $forall Entity aid animal <- listaAnimal 
                         <tr>
                             <td>
