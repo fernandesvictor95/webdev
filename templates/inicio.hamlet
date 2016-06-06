@@ -5,7 +5,7 @@ $doctype 5
         <body>
             <div class="header">
                 <div class="itens_menu esq">
-                <a href=@{InicioR} class="bege negrito"><p>ADOTE 1 PARÇA</p></a>
+                    <a href=@{InicioR} class="bege negrito"><p>ADOTE 1 PARÇA</p></a>
             <div class="itens_menu dir">
                 <a href=@{LogoutR} class="menu branco">Logout</a>
             <div id="home_top">
