@@ -11,12 +11,25 @@
             <p class="txtcorrido">Esses são os animais disponíveis para adoção aqui no site. Se quiser cadastrar mais um, <a href=@{CadastroR}>clique aqui</a>.</p>
         <div class="divcinza">
             <div class="content_area">
-                <table .informacoes>
-                    $forall Entity aid animal <- listaAnimal 
+                <table .informacoes cellspacing="0" cellpadding="0">
                         <tr>
-                            <td>
-                                #{animalNome animal}
-                <a href=@{InicioR}><p .btn_direcoes>Voltar para a página inicial</p></a>        
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Peso</th>
+                            <th>Tamanho</th>
+                            <th>Observações:</th>
+                            <th>Espécie</th>
+                            <th>Raça</th>
+                    $forall (Entity p animal, Entity _ raca, Entity _ especie) <- animais
+                        <tr>
+                            <td>#{animalNome animal}</td>
+                            <td>#{animalIdade animal}</td>
+                            <td>#{animalPeso animal}</td>
+                            <td>#{animalTamanho animal}</td>
+                            <td>#{animalObservacoes animal}</td>
+                            <td>#{especieNome especie}</td>
+                            <td>#{racaNome raca}</td>
+                <a href=@{InicioR}><p class="btn_direcoes">Voltar para a página inicial</p></a>        
         <div class="footer">
             <p class="bege negrito titulo_footer">Adote 1 Parça</p>
             <p class="branco sub_footer">Dayane, Stephany e Victor</p>

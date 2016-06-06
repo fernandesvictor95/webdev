@@ -28,7 +28,7 @@
                         <td>#{animalObservacoes pet}</td>
                         <td>#{especieNome especie}</td>
                         <td>#{racaNome raca}</td>
-            <a href=@{InicioR}><p .btn_direcoes>Voltar para a ágina inicial</p></a>
+            <a href=@{InicioR}><p class="btn_direcoes">Voltar para a ágina inicial</p></a>
         <div class="footer">
             <p class="bege negrito titulo_footer">Adote 1 Parça</p>
             <p class="branco sub_footer">Dayane, Stephany e Victor</p>

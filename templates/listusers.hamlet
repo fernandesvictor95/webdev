@@ -20,7 +20,7 @@
                         <tr>
                             <td>
                                 #{usuarioNome usuario}
-                <a href=@{AdminR}><p .btn_direcoes>Voltar para a ágina inicial</p></a>       
+                <a href=@{AdminR}><p class="btn_direcoes">Voltar para a ágina inicial</p></a>       
         <div class="footer">
             <p class="bege negrito titulo_footer">Adote 1 Parça</p>
             <p class="branco sub_footer">Dayane, Stephany e Victor</p>

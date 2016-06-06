@@ -275,6 +275,9 @@ a{
 .informacoes th{
     background-color: #c49a3d;
     color: #000;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    padding: 5px;
 }
 
 .btn_direcoes{
@@ -284,4 +287,10 @@ a{
     width: auto;
     margin: 0;
     font-size: 14px;
+}
+
+td{
+    border: 1px solid #c49a3d;
+    box-sizing: border-box;
+    padding: 5px;
 }
