@@ -93,7 +93,7 @@ postCadastroR = do
            case result of 
                FormSuccess animal -> (runDB $ insert animal) >>= \aiid -> redirect (AnimalR aiid)
                _ -> redirect ErroR
-
+                
 -- validação cadastro de espécie
 postCadEspecieR :: Handler Html
 postCadEspecieR = do
@@ -101,7 +101,14 @@ postCadEspecieR = do
            case result of 
                FormSuccess especie -> (runDB $ insert especie) >>= \eiid -> redirect (CadEspecieR)
                _ -> redirect ErroR
-               
+
+-- validação update de pet
+postUpdateAnimalR :: AnimalId -> Handler Html
+postUpdateAnimalR aid = do
+           ((result, _), _) <- runFormPost formAnimal
+           case result of 
+               FormSuccess animal -> (runDB $ Database.Persist.Postgresql.replace aid animal) >>= \eiid -> redirect (GerenciarPetsR)
+               _ -> redirect ErroR
                
 -- validação cadastro de raça
 postCadRacaR :: Handler Html
@@ -148,6 +155,30 @@ getExcluirUsuarioR uid = do
         runDB $ delete $ uid
         setMessage $ [shamlet| Registro excluído com sucesso! |]
         redirect UsuariosR
+        
+-- EXCLUIR ANIMAL
+getExcluirAnimalR :: AnimalId -> Handler Html
+getExcluirAnimalR aid = do
+        runDB $ get404 aid
+        runDB $ delete $ aid
+        setMessage $ [shamlet| Registro excluído com sucesso! |]
+        redirect GerenciarPetsR
+        
+-- EXCLUIR RAÇA
+getExcluirRacaR :: RacaId -> Handler Html
+getExcluirRacaR rid = do
+        runDB $ get404 rid
+        runDB $ delete $ rid
+        setMessage $ [shamlet| Registro excluído com sucesso! |]
+        redirect RacasR
+        
+-- EXCLUIR ESPÉCIE
+getExcluirEspecieR :: EspecieId -> Handler Html
+getExcluirEspecieR eid = do
+        runDB $ get404 eid
+        runDB $ delete $ eid
+        setMessage $ [shamlet| Registro excluído com sucesso! |]
+        redirect EspeciesR
 
 -- PÁGINA COM TODOS OS PETS
 getGerenciarPetsR :: Handler Html
@@ -188,7 +219,15 @@ getCadastroR = do
            defaultLayout $ do
                addStylesheet $ StaticR style_css
                toWidget $ $(whamletFile "templates/doacoes.hamlet")
-
+               
+-- UPDATE DO ANIMAL
+getUpdateAnimalR :: AnimalId -> Handler Html
+getUpdateAnimalR aid = do
+           (widget, enctype) <- generateFormPost formAnimal
+           defaultLayout $ do
+               addStylesheet $ StaticR style_css
+               toWidget $ $(whamletFile "templates/cadastro.hamlet")               
+               
 -- PERFIL DO ANIMAL
 getAnimalR :: AnimalId -> Handler Html
 getAnimalR aid = do

@@ -296,3 +296,25 @@ td{
     box-sizing: border-box;
     padding: 5px;
 }
+
+.btn_direcoes{
+    background-color: #c49a3d;
+    color: #000;
+    text-transform: uppercase;
+    width: 150px;
+    margin: 0 auto;
+    font-size: 14px;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.btn_editar{
+    background-color: #c49a3d;
+    color: #000;
+    text-transform: uppercase;
+    width: 150px;
+    margin: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    padding: 5px;
+}

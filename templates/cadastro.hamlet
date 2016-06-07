@@ -12,7 +12,7 @@
             <p class="txtcorrido">Esses são os animais disponíveis para adoção aqui no site. Se quiser cadastrar mais um, clique aqui.</p>
         <div class="divcinza">
             <div class="content_area">
-                <form method=post enctype=#{enctype} action=@{PetsR}>
+                <form method=post enctype=#{enctype} action=@{UpdateAnimalR $ aid}>
                      ^{widget}
                      <input type="submit" value="Enviar">
         <div class="footer">
