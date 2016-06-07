@@ -140,6 +140,14 @@ getUsuariosR = do
         defaultLayout $ do
             addStylesheet $ StaticR style_css
             toWidget $ $(whamletFile "templates/listusers.hamlet")
+            
+-- EXCLUIR USUÁRIO
+getExcluirUsuarioR :: UsuarioId -> Handler Html
+getExcluirUsuarioR uid = do
+        runDB $ get404 uid
+        runDB $ delete $ uid
+        setMessage $ [shamlet| Registro excluído com sucesso! |]
+        redirect UsuariosR
 
 -- PÁGINA COM TODOS OS PETS
 getGerenciarPetsR :: Handler Html

@@ -18,9 +18,12 @@
                         <th>Opções</th>
                     $forall Entity uid usuario <- listaUsuarios 
                         <tr>
-                            <td>
-                                #{usuarioNome usuario}
-                <a href=@{AdminR}><p class="btn_direcoes">Voltar para a ágina inicial</p></a>       
+                            <td>#{usuarioNome usuario}</td>
+                            <td><a href=@{ExcluirUsuarioR $ uid} class="btn btn-success btn-lg btn-block">Excluir</a></td>
+                            
+                                
+                <a href=@{AdminR}><p class="btn_direcoes">Voltar para a ágina inicial</p></a>  
+                
         <div class="footer">
             <p class="bege negrito titulo_footer">Adote 1 Parça</p>
             <p class="branco sub_footer">Dayane, Stephany e Victor</p>

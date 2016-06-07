@@ -17,6 +17,7 @@ pRoutes = [parseRoutes|
 /erro ErroR GET                         -- página de erro
 /usuario UsuarioR GET POST              -- cadastro de usuário
 /perfil/#UsuarioId PerfilR GET          -- perfil de usuário
+/excluir_usuario/#UsuarioId ExcluirUsuarioR GET --excluir usuário
 /cadastro CadastroR GET POST            -- cadastro de animal
 /animal/#AnimalId AnimalR GET           -- perfil do animal
 /pets PetsR GET                         -- lista de todos os animais (usuário)
@@ -27,6 +28,7 @@ pRoutes = [parseRoutes|
 /especies EspeciesR GET                 -- lista de espécies
 /racas RacasR GET                       -- lista de raças
 /logout LogoutR GET
+
 /static StaticR Static getStatic
 
 
