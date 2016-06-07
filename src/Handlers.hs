@@ -281,15 +281,19 @@ getLoginR = do
 
 -- PÁGINA DE ERRO
 getErroR :: Handler Html
-getErroR = defaultLayout [whamlet|
-     <h1> Erro de cadastro
-|]
+getErroR = do
+     defaultLayout $ do
+     addStylesheet $ StaticR style_css
+     toWidget $ $(whamletFile "templates/erro.hamlet")
 
 
 -- MENSAGEM AO FAZER LOGOUT
 getLogoutR :: Handler Html
 getLogoutR = do
      deleteSession "_ID"
-     defaultLayout [whamlet| 
-         <h1> Até a próxima!
-     |]
+     defaultLayout $ do
+     addStylesheet $ StaticR style_css
+     toWidget $ $(whamletFile "templates/logout.hamlet")
+     --defaultLayout [whamlet| 
+     --    <h1> Até a próxima!
+    -- |]

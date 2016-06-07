@@ -13,6 +13,18 @@
             <p class="txtcorrido nomargin">Agora, vamos começar. Estas são as opções que você tem para nos ajudar:
             
         <div class="divcinza">
+            <div class="opc_menu">
+                <img src=@{StaticR doacoes_png} class="img_opc" />
+                <p class="txtcorrido branco nomargin">Encontrou um animal abandonado</p>
+                <p class="txtcorrido bege nomargin">ou</p>
+                <p class="txtcorrido branco">não pode mais cuidar do seu?</p>
+                <p class="btn_opc"><a href=@{CadastroR} class="bege">Clique aqui!</a></p>
+            <div class="opc_menu">
+                <img src=@{StaticR adocoes_png} class="img_opc" />
+                <p class="txtcorrido branco">Quer adotar 1 (ou vários) parça(s)?</p>
+                <p class="btn_opc"><a href=@{PetsR} class="bege">Clique aqui!</a></p>
+                
+        <div class="divcinza">
             <table .informacoes>
                 <tr>
                     <th>Nome</th>

@@ -61,8 +61,8 @@ instance Yesod Adote where
     isAuthorized ErroR _ = return Authorized
     isAuthorized HomeR _ = return Authorized
     isAuthorized UsuarioR _ = return Authorized
-    isAuthorized CadastroR _ = return Authorized
-    isAuthorized PetsR _ = return Authorized
+    isAuthorized CadastroR _ = isUser
+    isAuthorized PetsR _ = isUser
     isAuthorized InicioR _ = return Authorized
     isAuthorized AdminR _ = isAdmin
     isAuthorized CadEspecieR _ = isAdmin

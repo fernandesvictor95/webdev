@@ -1,0 +1,16 @@
+$doctype 5
+    <html>
+       <head>
+          <title>Adote 1 Parça</title>
+        <body>
+            <div class="header">
+                <div class="itens_menu esq">
+                    <a href=@{InicioR} class="bege negrito"><p>ADOTE 1 PARÇA</p></a>
+                    
+  
+            <div id="home_top">
+                <img src=@{StaticR _Logo_png}>
+                
+            <div class="footer">
+                <p class="bege negrito titulo_footer">OPA PARÇA! ERRO INESPERADO =(</p>
+                <p class="branco sub_footer">Dayane, Stephany e Victor</p>

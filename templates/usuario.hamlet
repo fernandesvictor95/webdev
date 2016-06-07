@@ -4,7 +4,7 @@
                 <a href=@{HomeR} class="bege negrito"><p>ADOTE 1 PARÇA</p></a>
                 
             <div class="itens_menu dir">
-                <a href=@{LogoutR} class="menu branco">Logout</a>
+                <a href=@{LoginR} class="menu branco">Login</a>
         <div id="home_top">
             <img src=@{StaticR _Logo_png}>
         <div class="welcome_msg">
