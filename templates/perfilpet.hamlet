@@ -7,10 +7,10 @@
         <div id="home_top">
             <img src=@{StaticR _Logo_png}>
         <div class="welcome_msg">
-            <p class="txtcorrido">ANIMAIS PARA ADOÇÃO</p>
-            <p class="txtcorrido">Esses são os animais disponíveis para adoção aqui no site. Se quiser cadastrar mais um, clique aqui.</p>
+            <p class="txtcorrido">Perfil do Animal</p>
+            <p class="txtcorrido">Esses são os dados cadastrados para este animal:</p>
         <div class="divcinza">
-            <table .informacoes>
+            <table .informacoes cellspacing="0" cellpadding="0">
                 <tr>
                     <th>Nome</th>
                     <th>Idade</th>
@@ -28,7 +28,7 @@
                         <td>#{animalObservacoes pet}</td>
                         <td>#{especieNome especie}</td>
                         <td>#{racaNome raca}</td>
-            <a href=@{InicioR}><p class="btn_direcoes">Voltar para a ágina inicial</p></a>
+            <a href=@{InicioR}><p class="btn_direcoes">Voltar para a página inicial</p></a>
         <div class="footer">
             <p class="bege negrito titulo_footer">Adote 1 Parça</p>
             <p class="branco sub_footer">Dayane, Stephany e Victor</p>

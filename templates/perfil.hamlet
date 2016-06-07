@@ -25,7 +25,7 @@
                 <p class="btn_opc"><a href=@{PetsR} class="bege">Clique aqui!</a></p>
                 
         <div class="divcinza">
-            <table .informacoes>
+            <table .informacoes cellspacing="0" cellpadding="0">
                 <tr>
                     <th>Nome</th>
                     <th>CPF</th>

@@ -8,8 +8,8 @@
         <div id="home_top">
             <img src=@{StaticR _Logo_png}>
         <div class="welcome_msg">
-            <p class="txtcorrido">Doação de animais</p>
-            <p class="txtcorrido">Esses são os animais disponíveis para adoção aqui no site. Se quiser cadastrar mais um, clique aqui.</p>
+            <p class="txtcorrido">Update de cadastros</p>
+            <p class="txtcorrido">Após o envio do formulário abaixo, o cadastro do animal estará alterado</p>
         <div class="divcinza">
             <div class="content_area">
                 <form method=post enctype=#{enctype} action=@{UpdateAnimalR $ aid}>
